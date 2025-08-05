@@ -12,18 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class StartPage extends Fragment {
+public class StartPage extends WizardPage {
 
     private StartPageViewModel mViewModel;
 
-    public static StartPage newInstance() {
-        return new StartPage();
-    }
+    public static StartPage newInstance() { return new StartPage(); }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_start_page, container, false);
+        View view = inflater.inflate(R.layout.fragment_start_page, container, false);
+
+        view.findViewById(R.id.startButton).setOnClickListener((View v) -> {
+            ((MainActivity) getActivity()).wizard.Step(UserInfoPage.class);
+        });
+
+        return view;
     }
 
     @Override
@@ -32,5 +36,4 @@ public class StartPage extends Fragment {
         mViewModel = new ViewModelProvider(this).get(StartPageViewModel.class);
         // TODO: Use the ViewModel
     }
-
 }

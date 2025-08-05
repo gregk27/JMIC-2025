@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class UserInfoPage extends Fragment {
+public class UserInfoPage extends WizardPage {
 
     private UserInfoPageViewModel mViewModel;
 
@@ -32,5 +32,4 @@ public class UserInfoPage extends Fragment {
         mViewModel = new ViewModelProvider(this).get(UserInfoPageViewModel.class);
         // TODO: Use the ViewModel
     }
-
 }
