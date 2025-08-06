@@ -8,7 +8,6 @@ import android.widget.Toast;
 import java.util.UUID;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
 public class WizardView implements View.OnClickListener, FragmentManager.OnBackStackChangedListener, WizardPage.OnStateChangeListener {
@@ -44,7 +43,7 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
         navigation.setVisibility(View.GONE);
     }
 
-    public void Step(Class<? extends Fragment> page){
+    public void step(Class<? extends Fragment> page){
         String tag = "Page_" + UUID.randomUUID();
         fragmentManager
                 .beginTransaction()
@@ -75,7 +74,11 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
     @Override
     public void onClick(View view) {
         if (view == nextButton){
-            Toast.makeText(context, "Next Pressed", Toast.LENGTH_SHORT).show();
+            var nextPage = currentPage.saveAndStep();
+            if (nextPage != null)
+                step(nextPage);
+            else
+                Toast.makeText(context, "Next page null, cannot step", Toast.LENGTH_SHORT).show();
         }
         else if (view == backButton){
             stepBack();
@@ -84,6 +87,7 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
 
     @Override
     public void OnStateChanged(WizardPage sender, boolean nextEnabled) {
-        nextButton.setEnabled(nextEnabled);
+        if (sender == currentPage)
+            nextButton.setEnabled(nextEnabled);
     }
 }

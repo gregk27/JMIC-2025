@@ -24,7 +24,7 @@ public class StartPage extends WizardPage {
         View view = inflater.inflate(R.layout.fragment_start_page, container, false);
 
         view.findViewById(R.id.startButton).setOnClickListener((View v) -> {
-            ((MainActivity) getActivity()).wizard.Step(UserInfoPage.class);
+            ((MainActivity) getActivity()).wizard.step(UserInfoPage.class);
         });
 
         return view;
@@ -45,5 +45,11 @@ public class StartPage extends WizardPage {
     @Override
     public boolean getNextEnabled() {
         return true;
+    }
+
+    @Override
+    public Class<? extends Fragment> saveAndStep() {
+        // Step to user info page
+        return UserInfoPage.class;
     }
 }

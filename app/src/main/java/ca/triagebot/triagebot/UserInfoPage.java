@@ -47,4 +47,11 @@ public class UserInfoPage extends WizardPage {
     public boolean getNextEnabled() {
         return viewModel.getValid().getValue();
     }
+
+    @Override
+    public Class<? extends Fragment> saveAndStep() {
+        // TODO: Save
+        // Always step to vitals page
+        return VitalsPage.class;
+    }
 }
