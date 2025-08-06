@@ -1,5 +1,6 @@
 package ca.triagebot.triagebot;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import ca.triagebot.triagebot.databinding.FragmentUserInfoPageBinding;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,7 @@ import android.view.ViewGroup;
 
 public class UserInfoPage extends WizardPage {
 
-    private UserInfoPageViewModel mViewModel;
+    private UserInfoPageViewModel viewModel;
 
     public static UserInfoPage newInstance() {
         return new UserInfoPage();
@@ -29,8 +31,9 @@ public class UserInfoPage extends WizardPage {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(UserInfoPageViewModel.class);
-        // TODO: Use the ViewModel
+        viewModel = new ViewModelProvider(this).get(UserInfoPageViewModel.class);
+        FragmentUserInfoPageBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_user_info_page);
+        binding.setViewmodel(viewModel);
     }
 
     @Override
