@@ -25,19 +25,17 @@ public class UserInfoPage extends WizardPage {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_user_info_page, container, false);
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(UserInfoPageViewModel.class);
-        FragmentUserInfoPageBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_user_info_page);
+
+        FragmentUserInfoPageBinding binding = FragmentUserInfoPageBinding.inflate(inflater);
         binding.setViewmodel(viewModel);
+        binding.setLifecycleOwner(getViewLifecycleOwner());
 
         viewModel.getValid().observe(getViewLifecycleOwner(), valid -> {
             onStateChanged();
         });
+
+        return binding.getRoot();
     }
 
     @Override
