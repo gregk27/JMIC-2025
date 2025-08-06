@@ -41,4 +41,9 @@ public class StartPage extends WizardPage {
     public boolean getNavigationVisibility() {
         return false;
     }
+
+    @Override
+    public boolean getNextEnabled() {
+        return true;
+    }
 }

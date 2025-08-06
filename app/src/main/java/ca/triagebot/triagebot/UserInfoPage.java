@@ -34,10 +34,19 @@ public class UserInfoPage extends WizardPage {
         viewModel = new ViewModelProvider(this).get(UserInfoPageViewModel.class);
         FragmentUserInfoPageBinding binding = DataBindingUtil.setContentView(getActivity(), R.layout.fragment_user_info_page);
         binding.setViewmodel(viewModel);
+
+        viewModel.getValid().observe(getViewLifecycleOwner(), valid -> {
+            onStateChanged();
+        });
     }
 
     @Override
     public boolean getNavigationVisibility() {
         return true;
+    }
+
+    @Override
+    public boolean getNextEnabled() {
+        return viewModel.getValid().getValue();
     }
 }

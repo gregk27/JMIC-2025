@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 import androidx.fragment.app.FragmentManager;
 
-public class WizardView implements View.OnClickListener, FragmentManager.OnBackStackChangedListener {
+public class WizardView implements View.OnClickListener, FragmentManager.OnBackStackChangedListener, WizardPage.OnStateChangeListener {
 
     private Context context;
     private FragmentManager fragmentManager;
@@ -64,6 +64,7 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
         WizardPage page = (WizardPage) frag;
 
         currentPage = page;
+        page.setStateChangeListener(this);
 
         if (page.getNavigationVisibility())
             navigation.setVisibility(View.VISIBLE);
@@ -81,4 +82,8 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
         }
     }
 
+    @Override
+    public void OnStateChanged(WizardPage sender, boolean nextEnabled) {
+        nextButton.setEnabled(nextEnabled);
+    }
 }
