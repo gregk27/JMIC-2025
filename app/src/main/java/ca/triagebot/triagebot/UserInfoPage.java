@@ -32,4 +32,9 @@ public class UserInfoPage extends WizardPage {
         mViewModel = new ViewModelProvider(this).get(UserInfoPageViewModel.class);
         // TODO: Use the ViewModel
     }
+
+    @Override
+    public boolean getNavigationVisibility() {
+        return true;
+    }
 }

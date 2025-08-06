@@ -36,4 +36,9 @@ public class StartPage extends WizardPage {
         mViewModel = new ViewModelProvider(this).get(StartPageViewModel.class);
         // TODO: Use the ViewModel
     }
+
+    @Override
+    public boolean getNavigationVisibility() {
+        return false;
+    }
 }
