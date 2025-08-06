@@ -3,6 +3,7 @@ package ca.triagebot.triagebot;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -26,7 +27,16 @@ public class MainActivity extends AppCompatActivity {
         wizard = new WizardView(
                 this,
                 getSupportFragmentManager(),
-                findViewById(R.id.pager),
+                findViewById(android.R.id.content),
                 StartPage.class);
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                wizard.stepBack();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
+
 }

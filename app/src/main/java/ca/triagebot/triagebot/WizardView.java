@@ -28,8 +28,21 @@ public class WizardView {
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.pager, page, null)
-                .addToBackStack("Start Page")
+                .addToBackStack("Page")
                 .commit();
     }
 
+    public void stepBack(){
+        fragmentManager.popBackStack();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view == nextButton){
+            Toast.makeText(context, "Next Pressed", Toast.LENGTH_SHORT).show();
+        }
+        else if (view == backButton){
+            stepBack();
+        }
+    }
 }
