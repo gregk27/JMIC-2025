@@ -12,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class VitalsPage extends Fragment {
+public class VitalsPage extends WizardPage {
 
     private VitalsPageViewModel mViewModel;
 
@@ -23,14 +23,23 @@ public class VitalsPage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        mViewModel = new ViewModelProvider(this).get(VitalsPageViewModel.class);
+
         return inflater.inflate(R.layout.fragment_vitals_page, container, false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(VitalsPageViewModel.class);
-        // TODO: Use the ViewModel
+    public boolean getNavigationVisibility() {
+        return true;
     }
 
+    @Override
+    public boolean getNextEnabled() {
+        return true;
+    }
+
+    @Override
+    public Class<? extends Fragment> saveAndStep() {
+        return null;
+    }
 }
