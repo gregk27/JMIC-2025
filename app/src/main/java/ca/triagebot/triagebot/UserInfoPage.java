@@ -13,6 +13,7 @@ import ca.triagebot.triagebot.databinding.FragmentUserInfoPageBinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 public class UserInfoPage extends WizardPage {
 
@@ -36,6 +37,11 @@ public class UserInfoPage extends WizardPage {
         });
 
         return binding.getRoot();
+    }
+
+    @Override
+    protected View getAutoKeyboardView(View root){
+        return root.findViewById(R.id.nameInput);
     }
 
     @Override
