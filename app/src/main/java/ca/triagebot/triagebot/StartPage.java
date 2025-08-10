@@ -48,7 +48,7 @@ public class StartPage extends WizardPage {
     }
 
     @Override
-    public Class<? extends Fragment> saveAndStep() {
+    public Class<? extends Fragment> saveAndStep(WizardData data) {
         // Step to user info page
         return UserInfoPage.class;
     }

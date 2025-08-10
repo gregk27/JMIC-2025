@@ -55,7 +55,7 @@ public class UserInfoPage extends WizardPage {
     }
 
     @Override
-    public Class<? extends Fragment> saveAndStep() {
+    public Class<? extends Fragment> saveAndStep(WizardData data) {
         // TODO: Save
         // Always step to vitals page
         return VitalsPage.class;

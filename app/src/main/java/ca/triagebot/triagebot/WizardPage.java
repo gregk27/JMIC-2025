@@ -14,7 +14,7 @@ public abstract class WizardPage extends Fragment {
 
     public abstract boolean getNavigationVisibility();
     public abstract boolean getNextEnabled();
-    public abstract Class<? extends Fragment> saveAndStep();
+    public abstract Class<? extends Fragment> saveAndStep(WizardData data);
 
     protected void onStateChanged(){
         if(changeListener != null){

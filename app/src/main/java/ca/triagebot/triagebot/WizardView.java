@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Stack;
 import java.util.UUID;
 
 import androidx.fragment.app.Fragment;
@@ -19,6 +20,7 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
     private Button nextButton, backButton;
 
     private WizardPage currentPage;
+    private final Stack<WizardData> data = new Stack<>();
 
     public WizardView(Context context, FragmentManager fm, View view, Class<? extends Fragment> initialPage){
         this.context = context;
@@ -32,6 +34,8 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
         backButton = view.findViewById(R.id.backButton);
         backButton.setOnClickListener(this);
 
+        // Initialize data stack
+        data.push(new WizardData());
 
         fragmentManager.addOnBackStackChangedListener(this);
         fragmentManager
@@ -54,6 +58,8 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
 
     public void stepBack(){
         fragmentManager.popBackStack();
+        // Pop data stack
+        data.pop();
     }
 
     @Override
@@ -74,9 +80,15 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
     @Override
     public void onClick(View view) {
         if (view == nextButton){
-            var nextPage = currentPage.saveAndStep();
-            if (nextPage != null)
+            // Save page data
+            WizardData newData = data.peek().clone();
+            var nextPage = currentPage.saveAndStep(newData);
+
+            if (nextPage != null) {
+                // Push saved data onto the stack
+                data.push(newData);
                 step(nextPage);
+            }
             else
                 Toast.makeText(context, "Next page null, cannot step", Toast.LENGTH_SHORT).show();
         }
