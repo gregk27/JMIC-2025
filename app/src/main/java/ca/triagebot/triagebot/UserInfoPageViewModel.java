@@ -9,6 +9,8 @@ public class UserInfoPageViewModel extends ViewModel {
 
     private MutableLiveData<String> name;
     private MutableLiveData<String> age;
+    private MutableLiveData<String> phoneNumber;
+    private MutableLiveData<String> healthCardNumber;
 
     private MediatorLiveData<Boolean> valid;
 
@@ -18,6 +20,14 @@ public class UserInfoPageViewModel extends ViewModel {
 
     public MutableLiveData<String> getAge(){
         return age;
+    }
+
+    public MutableLiveData<String> getPhoneNumber(){
+        return phoneNumber;
+    }
+
+    public MutableLiveData<String> getHealthCardNumber(){
+        return healthCardNumber;
     }
 
     public LiveData<Boolean> getValid() {

@@ -3,6 +3,7 @@ package ca.triagebot.triagebot;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import ca.triagebot.triagebot.databinding.FragmentUserInfoPageBinding;
 
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ public class UserInfoPage extends WizardPage {
         return new UserInfoPage();
     }
 
+    @SuppressLint("WrongThread")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -35,6 +38,8 @@ public class UserInfoPage extends WizardPage {
         viewModel.getValid().observe(getViewLifecycleOwner(), valid -> {
             onStateChanged();
         });
+
+        binding.phoneInput.addTextChangedListener(new PhoneNumberFormattingTextWatcher("US"));
 
         return binding.getRoot();
     }

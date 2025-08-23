@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint=" any health conditions"
-        android:inputType="text"
+        android:inputType="text|textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/heartRate"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,5 +57,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/bloodPressure" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Put your finger in the oximeter and wait for the number"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toTopOf="@+id/heartRate"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wrap the band around your arm, press start, and wait for the number"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toTopOf="@+id/bloodPressure"
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
