@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">TriageBot</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
+    <string name="end_title">Triage Submitted</string>
+    <string name="end_button">Finish</string>
+    <string name="end_message">A doctor will be with you shortly</string>
+    <string name="start_message">Press Start to Begin</string>
+    <string name="start">START</string>
+    <string name="start_title">Hello, I am Triage Bot</string>
+    <string name="name_hint">Name</string>
+    <string name="age_hint">Age</string>
+    <string name="phone_hint">Phone Number</string>
+    <string name="health_card_hint">Health Card Number</string>
+    <string name="health_conditions_hint">any health conditions</string>
+    <string name="heart_rate_hint">finger measure number</string>
+    <string name="blood_pressure_hint">arm pressure numbers</string>
+    <string name="other_hint">is anything abnormal</string>
+    <string name="oximeter_instructions">Put your finger in the oximeter and wait for the number</string>
+    <string name="blood_pressure_instructions">Wrap the band around your arm, press start, and wait for the number</string>
 </resources>
