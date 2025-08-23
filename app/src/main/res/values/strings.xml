@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TriageBot</string>
+    <string name="app_name" translatable="false">TriageBot</string>
     <string name="next">Next</string>
     <string name="back">Back</string>
     <string name="end_title">Triage Submitted</string>
