@@ -62,6 +62,12 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
         data.pop();
     }
 
+    public void restart(){
+        while(!data.isEmpty()){
+            stepBack();
+        }
+    }
+
     @Override
     public void onBackStackChanged() {
         String tag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();

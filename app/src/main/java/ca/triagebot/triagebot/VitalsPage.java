@@ -40,6 +40,6 @@ public class VitalsPage extends WizardPage {
 
     @Override
     public Class<? extends Fragment> saveAndStep(WizardData data) {
-        return null;
+        return EndPage.class;
     }
 }
