@@ -30,10 +30,24 @@ public class StartPage extends WizardPage {
             ((MainActivity) getActivity()).wizard.step(UserInfoPage.class);
         });
 
-        ((Switch)view.findViewById(R.id.languageSwitch)).setOnCheckedChangeListener((v, state) -> {
-            LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(state ? "fr" : "en");
-            AppCompatDelegate.setApplicationLocales(appLocale);
-        });
+        // Only touch the language switch on a new instance of start page
+        // The way this is handled for now is definitely a memory leak, but does the job
+        if(savedInstanceState == null){
+            LocaleListCompat locales = AppCompatDelegate.getApplicationLocales();
+            final boolean initState = locales.get(0).getLanguage().equals("fr");
+
+            Switch languageSwitch = view.findViewById(R.id.languageSwitch);
+            languageSwitch.setOnCheckedChangeListener(null);
+            languageSwitch.setChecked(initState);
+
+            languageSwitch.setOnCheckedChangeListener((v, state) -> {
+                String langStr = state ? "fr" : "en";
+                if(!locales.get(0).getLanguage().equals(langStr)){
+                    LocaleListCompat newLocale = LocaleListCompat.forLanguageTags(langStr);
+                    AppCompatDelegate.setApplicationLocales(newLocale);
+                }
+            });
+        }
 
         return view;
     }
