@@ -1,5 +1,7 @@
 package ca.triagebot.triagebot;
 
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.os.LocaleListCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 
 public class StartPage extends WizardPage {
 
@@ -25,6 +28,11 @@ public class StartPage extends WizardPage {
 
         view.findViewById(R.id.startButton).setOnClickListener((View v) -> {
             ((MainActivity) getActivity()).wizard.step(UserInfoPage.class);
+        });
+
+        ((Switch)view.findViewById(R.id.languageSwitch)).setOnCheckedChangeListener((v, state) -> {
+            LocaleListCompat appLocale = LocaleListCompat.forLanguageTags(state ? "fr" : "en");
+            AppCompatDelegate.setApplicationLocales(appLocale);
         });
 
         return view;
