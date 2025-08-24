@@ -37,10 +37,11 @@ public class WizardView implements View.OnClickListener, FragmentManager.OnBackS
         // Initialize data stack
         data.push(new WizardData());
 
+        // NOTE: This leaves the backstack with previous data, but should be fine for demo at least
         fragmentManager.addOnBackStackChangedListener(this);
         fragmentManager
                 .beginTransaction()
-                .add(R.id.pager, initialPage, null, "Start Page")
+                .replace(R.id.pager, initialPage, null, "Start Page")
                 .addToBackStack("Start Page")
                 .commit();
 
